@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <my-component-li v-for="array1 in arrays" v-bind:array="array1"></my-component-li>
+    </ul>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+<script type="text/javascript">
+    Vue.component("my-component-li",{
+        props:["array"],
+       template:"<li>{{array}}</li>",
+    });
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            arrays:["张三","李四","王五"],
+        }
+    });
+</script>
+</body>
+</html>

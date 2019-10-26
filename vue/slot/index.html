@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <todo>
+        <todo-title slot="todo-title1" v-bind:title="titles"></todo-title>
+        <todo-context slot="todo-context1" v-for="(context1,index1) in contexts"
+                      v-bind:context="context1" v-bind:index="index1" v-on:remove-jump="remove2();">
+        </todo-context>
+    </todo>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+<script type="text/javascript">
+    Vue.component("todo",{
+       template: "<div>\
+           <slot name='todo-title1'></slot>\
+           <ul><slot name='todo-context1'></slot></ul>\
+       </div>\
+       "
+    });
+    Vue.component("todo-title",{
+        props:['title'],
+       template: "<div>{{title}}</div>"
+    });
+    Vue.component("todo-context",{
+        props:['context','index'],
+       template:"<li>{{index}}-{{context}}<button @click='remove1(index);'>删除</button></li>",
+        methods:{
+            remove1:function(index){
+                this.$emit("remove-jump",index)
+            }
+        }
+    });
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            titles:"标题1",
+            contexts:["张三","李四","王五"],
+        },
+        methods: {
+            remove2:function(index){
+                this.contexts.splice(index,1);
+            }
+        }
+    });
+</script>
+</body>
+</html>

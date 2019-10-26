@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+    <!--单行文本-->
+   <input type="text" v-model="message"/>名字:&nbsp;&nbsp;{{message}}<br/>
+    <!--多行文本-->
+    <textarea v-model="message2"></textarea>多行文本:&nbsp;&nbsp;{{message2}}<br/>
+    <!--复选框-->
+    单复选框：<input type="checkbox" id="checkbox1" v-model="checked">  <label for="checkbox1">{{ checked }}</label><br/>
+    <!--复选框-->
+    复选框：<input type="checkbox" id="checkbox2" value="Jack" v-model="arrays">
+    <label for="checkbox2">Jack</label>
+    <input type="checkbox" id="checkbox3" value="BOB" v-model="arrays">
+    <label for="checkbox3">BOB</label><span>选中的值：&nbsp;&nbsp;{{arrays}}</span><br/>
+    <!--单选框-->
+    单选框：<input type="radio" id="radio1" value="1" v-model="radio">
+    <label for="radio1">one</label>
+    <input type="radio" id="radio2" value="2" v-model="radio">
+    <label for="radio2">two</label><span>你选的值是：&nbsp;&nbsp;{{radio}}</span><br/>
+    <!--下拉框-->
+    <select v-model="select">
+        <option disabled="">请选择</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    <span>你选择的是：{{select}}</span><br/>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            message:null,
+            message2:null,
+            checked:false,
+            arrays:[],
+            radio:null,
+            select:null,
+        }
+    });
+</script>
+</body>
+</html>

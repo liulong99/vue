@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+    <p>我的姓名是：{{info.name}}</p>
+    <p>我的网址是：<a v-bind:href="info.url" target="_blank">{{info.url}}</a></p>
+    <p>我的页数是：{{info.page}}</p>
+    <p>是否可以挂载：{{info.isNonProfit}}</p>
+    <p>地址：{{info.address.country}}-{{info.address.city}}-{{info.address.street}}</p>
+    <ul>
+        <li v-for="link in info.links">
+            {{link.name}}-{{link.url}}
+        </li>
+    </ul>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el:'#app',
+        data(){
+            return {
+                info:{
+                    name:null,
+                    url: null,
+                    page:null,
+                    isNonProfit:null,
+                    address:{
+                        country:null,
+                        city:null,
+                        street:null,
+                    },
+                    links:[],
+                }
+            }
+        },
+    mounted(){
+        axios
+            .get('data.json')
+            .then(response=>this.info=response.data)
+    }
+    });
+</script>
+</body>
+</html>
